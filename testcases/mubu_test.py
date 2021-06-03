@@ -9,7 +9,8 @@ class TestCaseMubu1(HttpRunner):
 
     config = (Config("testcase description")
               .verify(False)
-              .variables(**{"data_unique_id":"32f11d25-c623-42a2-9b56-29e838a40cf4"})
+              .variables(**{"data_unique_id":"32f11d25-c623-42a2-9b56-29e838a40cf4",
+                            "csrf_token": "7359bc42-215c-4bb9-894c-43fd5d9dfa14"})
     )
 
     teststeps = [
@@ -152,7 +153,7 @@ class TestCaseMubu1(HttpRunner):
                     "_gid": "GA1.2.204283737.1622445955",
                     "Hm_lvt_4426cbb0486a79ea049b4ad52d81b504": "1622445955",
                     "reg_entrance": "https%3A%2F%2Fmubu.com%2F",
-                    "csrf_token": "7359bc42-215c-4bb9-894c-43fd5d9dfa14",
+                    "csrf_token": "$csrf_token",
                     "SESSION": "856542f2-069c-410b-90b1-ce7d888a17c9",
                     "Hm_lpvt_4426cbb0486a79ea049b4ad52d81b504": "1622616020",
                     "language": "en-US",
@@ -507,7 +508,7 @@ class TestCaseMubu1(HttpRunner):
                     "_gid": "GA1.2.204283737.1622445955",
                     "Hm_lvt_4426cbb0486a79ea049b4ad52d81b504": "1622445955",
                     "reg_entrance": "https%3A%2F%2Fmubu.com%2F",
-                    "csrf_token": "7359bc42-215c-4bb9-894c-43fd5d9dfa14",
+                    "csrf_token": "$csrf_token",
                     "SESSION": "856542f2-069c-410b-90b1-ce7d888a17c9",
                     "language": "en-US",
                     "country": "US",
