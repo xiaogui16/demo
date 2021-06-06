@@ -8,6 +8,7 @@ from httprunner import HttpRunner, Config, Step, RunRequest, RunTestCase
 class TestCaseMubu1(HttpRunner):
 
     config = (Config("testcase description")
+              .base_url("https://api2.mubu.com/")
               .verify(False)
               .variables(**{"data_unique_id":"32f11d25-c623-42a2-9b56-29e838a40cf4",
                             "csrf_token": "7359bc42-215c-4bb9-894c-43fd5d9dfa14",
@@ -376,6 +377,8 @@ class TestCaseMubu1(HttpRunner):
                 }
             )
             .with_data("")
+            .extract()
+            .with_jmespath("body.data.id", "userId")
             .validate()
             .assert_equal("status_code", 200)
             .assert_equal("body.code", 2)
@@ -1665,7 +1668,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:3",
+                    "request-id": "MESSAGE:${userId}:${memberId}:3",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -1682,7 +1685,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 3,
-                    "requestId": "MESSAGE:8362824:${memberId}:3",
+                    "requestId": "MESSAGE:${userId}:${memberId}:3",
                     "token": "$docId",
                     "data": {
                         "message": {
@@ -1726,7 +1729,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:5",
+                    "request-id": "MESSAGE:${userId}:${memberId}:5",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -1743,7 +1746,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 5,
-                    "requestId": "MESSAGE:8362824:${memberId}:5",
+                    "requestId": "MESSAGE:${userId}:${memberId}:5",
                     "token": "$docId",
                     "data": {
                         "message": {
@@ -1785,7 +1788,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:7",
+                    "request-id": "MESSAGE:${userId}:${memberId}:7",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -1802,7 +1805,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 7,
-                    "requestId": "MESSAGE:8362824:${memberId}:7",
+                    "requestId": "MESSAGE:${userId}:${memberId}:7",
                     "token": "$docId",
                     "data": {
                         "message": {
@@ -1849,7 +1852,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:8",
+                    "request-id": "MESSAGE:${userId}:${memberId}:8",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -1866,7 +1869,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 8,
-                    "requestId": "MESSAGE:8362824:${memberId}:8",
+                    "requestId": "MESSAGE:${userId}:${memberId}:8",
                     "token": "$docId",
                     "data": {
                         "message": {
@@ -1953,7 +1956,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:10",
+                    "request-id": "MESSAGE:${userId}:${memberId}:10",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -1970,7 +1973,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 10,
-                    "requestId": "MESSAGE:8362824:${memberId}:10",
+                    "requestId": "MESSAGE:${userId}:${memberId}:10",
                     "token": "$docId",
                     "data": {
                         "message": {
@@ -2008,7 +2011,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:12",
+                    "request-id": "MESSAGE:${userId}:${memberId}:12",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -2025,7 +2028,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 12,
-                    "requestId": "MESSAGE:8362824:${memberId}:12",
+                    "requestId": "MESSAGE:${userId}:${memberId}:12",
                     "token": "$docId",
                     "data": {
                         "message": {
@@ -2077,7 +2080,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:14",
+                    "request-id": "MESSAGE:${userId}:${memberId}:14",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -2094,7 +2097,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 14,
-                    "requestId": "MESSAGE:8362824:${memberId}:14",
+                    "requestId": "MESSAGE:${userId}:${memberId}:14",
                     "token": "$docId",
                     "data": {
                         "message": {
@@ -2175,7 +2178,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:16",
+                    "request-id": "MESSAGE:${userId}:${memberId}:16",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -2192,7 +2195,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 16,
-                    "requestId": "MESSAGE:8362824:${memberId}:16",
+                    "requestId": "MESSAGE:${userId}:${memberId}:16",
                     "token": "$docId",
                     "data": {
                         "message": {
@@ -2247,7 +2250,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:18",
+                    "request-id": "MESSAGE:${userId}:${memberId}:18",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -2264,7 +2267,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 18,
-                    "requestId": "MESSAGE:8362824:${memberId}:18",
+                    "requestId": "MESSAGE:${userId}:${memberId}:18",
                     "token": "$docId",
                     "data": {
                         "message": {
@@ -2317,7 +2320,7 @@ class TestCaseMubu1(HttpRunner):
                     "content-type": "application/json;charset=UTF-8",
                     "accept": "application/json, text/plain, */*",
                     "jwt-token": " $jwttoken",
-                    "request-id": "MESSAGE:8362824:${memberId}:20",
+                    "request-id": "MESSAGE:${userId}:${memberId}:20",
                     "x-request-id": "$(gen_random_request_id())",
                     "version": "3.0.0",
                     "origin": "https://mubu.com",
@@ -2334,7 +2337,7 @@ class TestCaseMubu1(HttpRunner):
                     "engineType": "MUBU",
                     "messageType": "BROADCAST",
                     "reqId": 20,
-                    "requestId": "MESSAGE:8362824:${memberId}:20",
+                    "requestId": "MESSAGE:${userId}:${memberId}:20",
                     "token": "$docId",
                     "data": {
                         "message": {
