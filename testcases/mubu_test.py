@@ -463,6 +463,9 @@ class TestCaseMubu1(HttpRunner):
         ),
         Step(
             RunRequest("/v3/api/user/phone_login")
+            .with_variables(**{
+                    "remember": "true"
+            })
             .post("https://api2.$host/v3/api/user/phone_login")
             .with_headers(
                 **{
