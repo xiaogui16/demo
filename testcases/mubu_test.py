@@ -16,7 +16,9 @@ class TestCaseMubu1(HttpRunner):
                             "cookie": "HMACCOUNT_BFESS=B4D74524213CE3E5; BDSFRCVID_BFESS=-ZtOJexroG0dwD5eR0Z-JnhEmmKK0gOTDYLEOwXPsp3LGJLVgK9uEG0Pt_U-mEt-J8jwogKKKgOTHICF_2uxOjjg8UtVJeC6EG0Ptf8g0M5; H_BDCLCKID_SF_BFESS=tbkD_C-MfIvDqTrP-trf5DCShUFsBhvJB2Q-XPoO3KJffp-GbqK2MJDphx7424riWbRM2MbgylRp8P3y0bb2DUA1y4vpKMP8bmTxoUJ2XMKVDq5mqfCWMR-ebPRiB-b9QgbA5hQ7tt5W8ncFbT7l5hKpbt-q0x-jLTnhVn0MBCK0hI0ljj82e5PVKgTa54cbb4o2WbCQMDJO8pcN2b5oQT8O5P8tKlDj2GRZWJnNaR6vOIJTXpOUWfAkXpJvQnJjt2JxaqRC5hkBfq5jDh3MBpQDhtoJexIO2jvy0hvcWb3cShnVLUjrDRLbXU6BK5vPbNcZ0l8K3l02V-bIe-t2XjQhDNtDt60jfn3aQ5rtKRTffjrnhPF3eJLmXP6-hnjy3bRbLh-a5x_2jJ3_h47phtuUyN3MWh3RymJ42-39LPO2hpRjyxv4bUn-5toxJpOJXaILWl52HlFWj43vbURvyP-g3-7A3M5dtjTO2bc_5KnlfMQ_bf--QfbQ0hOhqP-jBRIEoK0hJC-2bKvPKITD-tFO5eT22-usBCcm2hcHMPoosIJg5U8hbqjQMJrZ2tv4aCjiaKJjBMbUoqRHXnJi0btQDPvxBf7p5208Ll5TtUJM_UKzhfoMqfTbMlJyKMniWKv9-pnY0hQrh459XP68bTkA5bjZKxtq3mkjbPbDfn028DKuDTtajj3QeaRabK6aKC5bL6rJabC3KfcmXU6q2bDeQN3b-M0t5Gujhj6FaJnpDJ6oyT3JXp0vWtv4WbbvLT7johRTWqR4epkw5fonDh83Bn_L2xQJHmLOBt3O5hvvOn3O3M7zLUKmDloOW-TB5bbPLUQF5l8-sq0x0bOte-bQXH_E5bj2qRAO_K0b3f; BAIDUID_BFESS=9CD12F79A967324AE3AA1E93F6CF2091:SL=0:NR=10:FG=1",
                             "memberId": "6067492162047404",
                             # "host": "mubu.com"，
-                            "host": "${get_test_host()}"
+                            "host": "${get_test_host()}",
+                            "phone": "15058168264",
+                            "password": "boss@123",
                 })
     )
 
@@ -484,7 +486,7 @@ class TestCaseMubu1(HttpRunner):
                 }
             )
             .with_json(
-                {"phone": "15058168264", "password": "boss@123", "callbackType": 0}
+                {"phone": "$phone", "password": "$password", "callbackType": 0}
             )
             .validate()
             .assert_equal("status_code", 200)
