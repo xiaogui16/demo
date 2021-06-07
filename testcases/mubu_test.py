@@ -491,6 +491,7 @@ class TestCaseMubu1(HttpRunner):
             .with_json(
                 {"phone": "$phone", "password": "$password", "callbackType": 0}
             )
+            .teardown_hook("${sleep(5)}")
             .validate()
             .assert_equal("status_code", 200)
             .assert_equal("body.code", 0)
@@ -825,7 +826,8 @@ class TestCaseMubu1(HttpRunner):
             .validate()
             .assert_equal("status_code", 200)
             .assert_equal("body.code", 0)
-            .assert_greater_than("body.data.inviteCount", 100)
+            # .assert_greater_than("body.data.inviteCount", 1000)
+            # .assert_length_less_than("body.data.inviteCount",100)
         ),
         Step(
             RunRequest("/v3/api/activity/five_years/participation")
@@ -936,9 +938,11 @@ class TestCaseMubu1(HttpRunner):
                 }
             )
             .with_json({"start": ""})
+            .teardown_hook("${get_folder_nums($response)}", "folder_num")
             .validate()
             .assert_equal("status_code", 200)
             .assert_equal("body.code", 0)
+            .assert_greater_than("$folder_num", 7)
         ),
         Step(
             RunRequest("/v3/api/activity/five_years/participation")
