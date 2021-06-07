@@ -825,6 +825,7 @@ class TestCaseMubu1(HttpRunner):
             .validate()
             .assert_equal("status_code", 200)
             .assert_equal("body.code", 0)
+            .assert_greater_than("body.data.inviteCount", 100)
         ),
         Step(
             RunRequest("/v3/api/activity/five_years/participation")
